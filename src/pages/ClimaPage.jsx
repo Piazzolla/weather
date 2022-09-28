@@ -7,7 +7,7 @@ export const ClimaPage = () => {
 
 
     const onButtonClick = ({target}) => {
-        console.log(target.innerHTML);
+        //console.log(target.innerHTML);
         setSelectedCity({ seleccionada: target.innerHTML })
     }
 
@@ -32,7 +32,7 @@ export const ClimaPage = () => {
                     }
                 </ul>
 
-                <ClimaCiudad key={selectedCity} ciudad={selectedCity} />
+                <ClimaCiudad ciudad={selectedCity} />
             </div>
         </>
     )

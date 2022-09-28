@@ -1,28 +1,23 @@
 import { useEffect, useSelector, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
 export const ClimaCiudad = ({ ciudad }) => {
 
 
     const [clima, setClima] = useState();
-    const { seleccionada } = ciudad
-
-//    console.log(seleccionada);
-
+    const { seleccionada } = ciudad;
+    //console.log(seleccionada);
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${seleccionada}&units=metric&appid=cf0da87edbf2563ac04932a8c97d238f`;
+    const { data } = useFetch(url);
+    //console.log(data);
+    const { main } = !!data && data;
     if (seleccionada === '') {
         return <h1>CIUDAD NO VALIDA</h1>
     }
 
     useEffect(() => {
-        fetchData();
-    }, [seleccionada])
-
-    const fetchData = async () => {
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${seleccionada}&units=metric&appid=cf0da87edbf2563ac04932a8c97d238f`)
-        const jResult = await result.json();
-       // console.log(jResult.main);
-        const nuevoClima = jResult.main;
-        setClima(nuevoClima);
-    }
+        setClima(main);
+    }, [main])
 
     return (
         <>
