@@ -3,11 +3,11 @@ import { useFetch } from "../hooks/useFetch";
 
 export const ClimaCiudad = ({ ciudad }) => {
 
-
+    const apiId = import.meta.env.VITE_API_ID; 
     const [clima, setClima] = useState();
     const { seleccionada } = ciudad;
     //console.log(seleccionada);
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${seleccionada}&units=metric&appid=cf0da87edbf2563ac04932a8c97d238f`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${seleccionada}&units=metric&appid=${apiId}`;
     const { data } = useFetch(url);
     //console.log(data);
     const { main } = !!data && data;
